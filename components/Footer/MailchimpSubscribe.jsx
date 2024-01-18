@@ -16,13 +16,7 @@ export default () => {
       const response = await axios.post("https://testapi.thedaygalpuclub.com/api/v1/users/newsletter", { email });
       setState("SUCCESS");
     } catch (e) {
-      if (e.response && e.response.data && e.response.data.error) {
-        // If response, data, and error properties are present, set the error message
-        setErrorMessage(e.response.data.error);
-      } else {
-        // If any of the properties are missing, set a generic error message
-        setErrorMessage("An error occurred while processing your request.");
-      }
+      setErrorMessage(e.response.data.error);
       setState("ERROR");
     }
   };
