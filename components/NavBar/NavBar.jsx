@@ -219,7 +219,7 @@ const NavBar = () => {
           {isMounted && (
             /* USER PROFILE */
             (typeof window !== "undefined" && userData) ? (
-              <div className={Style.navbar_container_right_profile_box}><MdOutlineWallet />
+              <div className={Style.navbar_container_right_profile_box}><MdOutlineWallet className={Style.notify} />
                 <p className={Style.balanceText}>{userbalance.slice(0, 6)}</p>
                 <div className={Style.navbar_container_right_profile}>
                   <div className={Style.profileContainer}>
