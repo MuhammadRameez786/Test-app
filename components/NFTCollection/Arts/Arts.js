@@ -57,7 +57,7 @@ const Arts = () => {
   >
     {arts.map((collection) => (
       <SwiperSlide key={collection._id}>
-        <div className={`${Style.slider_box} swiper-slide`}>
+        <div className={Style.slider_box}>
           <Link
             href={{
               pathname: `/collection`,
