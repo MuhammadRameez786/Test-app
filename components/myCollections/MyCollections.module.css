@@ -14,7 +14,7 @@
   
   .slider_box {
     width: 100%;
-    background-color: #242435;
+    background-color: 000000;
     padding: 10px;
     margin: 50px auto;
     border-radius: 10px;
@@ -115,20 +115,27 @@
     letter-spacing: 0.3px;
     margin-top: 10px;
   }
-  
-  .highest_bid {
-    color: #5e5e5e !important;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
+  .slider_name{
+    color: #ffdf2b;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     margin-top: 10px;
-    margin-bottom: 10px;
   }
   
-  .slider_box_text .price {
-    color: #ff2289;
-    font-weight: 400;
+  .highest_bid {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .highest_bid h4{
+    color: #ffdf2b;
+    font-weight: 600;
     margin-top: 5px;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     letter-spacing: 1px;
   }
   
@@ -142,4 +149,42 @@
   .price_like a {
     color: #5e5e5e;
   }
-  
+  /* Styles for the entire Swiper container */
+.slider_section {
+  position: relative;
+}
+
+/* Styles for the next and previous arrow buttons */
+.swiperButtonNext,
+.swiperButtonPrev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  background-color: #ffffff; /* Button background color */
+  color: #000000; /* Button text color */
+  border: 1px solid #000000; /* Button border color */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+/* Styles for the next arrow button */
+.swiperButtonNext {
+  right: 10px; /* Adjust the distance from the right as needed */
+}
+
+/* Styles for the previous arrow button */
+.swiperButtonPrev {
+  left: 10px; /* Adjust the distance from the left as needed */
+}
+
+/* Hover effect for the buttons (optional) */
+.swiperButtonNext:hover,
+.swiperButtonPrev:hover {
+  background-color: #000000; /* Button background color on hover */
+  color: #ffffff; /* Button text color on hover */
+}
