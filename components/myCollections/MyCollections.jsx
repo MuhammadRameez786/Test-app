@@ -5,7 +5,7 @@ import 'swiper/css'
 
 //Internal Import//
 
-import Style from "./MyCollection.module.css";
+import Style from "./MyCollections.module.css";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 SwiperCore.use([Pagination]);
 

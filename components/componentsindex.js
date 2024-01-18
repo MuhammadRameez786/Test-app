@@ -23,7 +23,7 @@ import Arts from "./NFTCollection/Arts/Arts";
 import Music from "./NFTCollection/Music/Music";
 import Photography from "./NFTCollection/Photography/Photography";
 import SliderCard from "./Slider/SliderCard/SliderCard";
-import MyCollections from "./MyCollection/MyCollection";
+import MyCollections from "./myCollections/MyCollections";
 
 
 export {
