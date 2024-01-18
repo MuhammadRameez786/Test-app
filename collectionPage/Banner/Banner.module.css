@@ -1,4 +1,7 @@
-
+.banner_image {
+    width: 100%;
+    object-fit: cover;
+}
 
 .banner_img_mobile{
     display: none;

@@ -80,75 +80,75 @@
 // };
 
 //   return (
-//     <div className={Style.Form}>
-//       <div className={Style.Form_box}>
-//             <form>
-//               <div className={Style.Form_box_input}>
-//                 <label htmlFor="profile-picture-upload">Upload Image</label>
-//                 <div className={Style.Form_box_input_box}>
-//                   <div className={Style.Form_box_input_box_icon}>
-//                     <HiUserCircle />
-//                   </div>
-//                     <input
-//                       type="file"
-//                       accept="image/*"
-//                       id="profile-picture-upload"
-//                       onChange={handleProfilePictureUpload}
-//                     />
-//                 </div>
-//               </div>
-//               <div className={Style.Form_box_input}>
-//                 <label htmlFor="profile-banner-upload">Upload Banner</label>
-//                 <div className={Style.Form_box_input_box}>
-//                   <div className={Style.Form_box_input_box_icon}>
-//                     <HiUserCircle />
-//                   </div>
-//                     <input
-//                       type="file"
-//                       accept="image/*"
-//                       id="profile-banner-upload"
-//                       onChange={handleProfileBannerUpload}
-//                     />
-//                 </div>
-//               </div>
-//               <div className={Style.Form_box_input}>
-//                 <label htmlFor="name">Name</label>
-//                 <div className={Style.Form_box_input_box}>
-//                   <div className={Style.Form_box_input_box_icon}>
-//                     <HiUserCircle />
-//                   </div>
-//                   <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-//                 </div>
-//               </div>
-//               <div className={Style.Form_box_input}>
-//                 <label htmlFor="email">Email</label>
-//                 <div className={Style.Form_box_input_box}>
-//                   <div className={Style.Form_box_input_box_icon}>
-//                     <HiOutlineMail />
-//                   </div>
-//                   <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-//                 </div>
-//               </div>
-//               <div className={Style.Form_box_btn}>
-//                 <button type="submit" className={Style.button}>
-//                   Submit
-//                 </button>
-//               </div>
-//             </form>
-//             <ToastContainer
-//               position="top-center"
-//               autoClose={5000}
-//               hideProgressBar={false}
-//               newestOnTop={false}
-//               closeOnClick
-//               rtl={false}
-//               pauseOnFocusLoss
-//               draggable
-//               pauseOnHover
-//               theme="dark"
-//             />
-//           </div>
-//         </div>
+{/* <div className={Style.Form}>
+  <div className={Style.Form_box}>
+    <form>
+      <div className={Style.Form_box_input}>
+        <label htmlFor="profile-picture-upload">Upload Image</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiUserCircle />
+          </div>
+          <input
+            type="file"
+            accept="image/*"
+            id="profile-picture-upload"
+            onChange={handleProfilePictureUpload}
+          />
+        </div>
+      </div>
+      <div className={Style.Form_box_input}>
+        <label htmlFor="profile-banner-upload">Upload Banner</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiUserCircle />
+          </div>
+          <input
+            type="file"
+            accept="image/*"
+            id="profile-banner-upload"
+            onChange={handleProfileBannerUpload}
+          />
+        </div>
+      </div>
+      <div className={Style.Form_box_input}>
+        <label htmlFor="name">Name</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiUserCircle />
+          </div>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+      </div>
+      <div className={Style.Form_box_input}>
+        <label htmlFor="email">Email</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiOutlineMail />
+          </div>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+      </div>
+      <div className={Style.Form_box_btn}>
+        <button type="submit" className={Style.button}>
+          Submit
+        </button>
+      </div>
+    </form>
+    <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+    />
+  </div>
+</div> */}
 //   );
 // };
 
@@ -157,8 +157,10 @@
 import React, { useState, useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { HiOutlineMail, HiUserCircle } from "react-icons/hi";
 
 import { NFTMarketplaceContext } from '../../Context/NFTMarketplaceContext';
+import Style from "./Form.module.css";
 
 const Form = () => {
   const { updateUser, currentAccount, uploadToIPFS, connectToUserProfile, } = useContext(NFTMarketplaceContext);
@@ -236,37 +238,67 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <br />
+    <div className={Style.Form}>
+      <div className={Style.Form_box}>
+        <form onSubmit={handleSubmit}>
+        <div className={Style.Form_box_input}>
+        <label htmlFor="name">Name</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiUserCircle />
+          </div>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+      </div>
+      <div className={Style.Form_box_input}>
+        <label htmlFor="email">Email</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiOutlineMail />
+          </div>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+      </div>
+          <br />
 
-      <label>
-        Email:
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <br />
+          <div className={Style.Form_box_input}>
+        <label htmlFor="profile-picture-upload">Upload Image</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiUserCircle />
+          </div>
+          <input
+            type="file"
+            accept="image/*"
+            id="profile-picture-upload"
+            onChange={handleProfilePictureUpload}
+          />
+        </div>
+      </div>
 
-      <label>
-        Profile Picture:
-        <input type="file" onChange={handleProfilePictureUpload} accept="image/*" />
-      </label>
-      <br />
+          <div className={Style.Form_box_input}>
+        <label htmlFor="profile-banner-upload">Upload Banner</label>
+        <div className={Style.Form_box_input_box}>
+          <div className={Style.Form_box_input_box_icon}>
+            <HiUserCircle />
+          </div>
+          <input
+            type="file"
+            accept="image/*"
+            id="profile-banner-upload"
+            onChange={handleProfileBannerUpload}
+          />
+        </div>
+      </div>
+          <div className={Style.Form_box_btn}>
+            <button className={Style.button} type="submit">Update User</button>
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <label>
-        Profile Banner:
-        <input type="file" onChange={handleProfileBannerUpload} accept="image/*" />
-      </label>
-      <br />
-
-      <button type="submit">Update User</button>
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-      <ToastContainer />
-    </form>
+          <ToastContainer />
+        </form>
+      </div>
+    </div>
   );
 };
 

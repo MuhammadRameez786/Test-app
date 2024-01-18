@@ -4,6 +4,7 @@ import Image from "next/image";
 //INTERNAL IMPORT
 import Style from "./Banner.module.css";
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+import images from "../../img";
 
 const Banner = ({ bannerImage }) => {
   const { getUser, currentAccount } = useContext(NFTMarketplaceContext);
@@ -24,17 +25,28 @@ const Banner = ({ bannerImage }) => {
 
     fetchUserData();
   }, [getUser, currentAccount]);
+
+  const defaultBannerUrl =
+    "https://res.cloudinary.com/dmesqweam/image/upload/v1705605183/default-banner_btnhjc.jpg";
   return (
     <div className={Style.banner}>
       <div className={Style.banner_img}>
-      {userData && userData.profilebanner && (
-        <Image
-          src={userData.profilebanner}
-          objectFit="cover"
-          alt="background"
-          width={1600}
-          height={300}
-        />
+      {userData && userData.profilebanner ? (
+          <img
+            src={userData.profilebanner}
+            objectFit="cover"
+            alt="background"
+            height={300}
+            className={Style.banner_image}
+          />
+        ) : (
+          <img
+            src={defaultBannerUrl}
+            objectFit="cover"
+            alt="background"
+            height={300} 
+            className={Style.banner_image}
+          />
         )}
       </div>
 

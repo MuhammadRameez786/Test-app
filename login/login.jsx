@@ -163,7 +163,7 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="custom-form" onSubmit={handleSubmit}>
       <label>
         Name:
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />

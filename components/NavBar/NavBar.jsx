@@ -224,7 +224,7 @@ const NavBar = () => {
                 <div className={Style.navbar_container_right_profile}>
                   <div className={Style.profileContainer}>
                     <img
-                      src={userData.profilePicture || 'Anonymous'}
+                      src={userData.profilePicture || 'https://res.cloudinary.com/dmesqweam/image/upload/v1705602706/1995071-200_zolgnb.png'}
                       alt="Profile"
                       width={40}
                       height={40}

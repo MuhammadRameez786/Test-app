@@ -58,7 +58,7 @@ const Profile = () => {
       {userData && (
         <div className={Style.profile_account}>
           <img
-            src={userData.profilePicture || 'Anonymous'}
+            src={userData.profilePicture || 'https://res.cloudinary.com/dmesqweam/image/upload/v1705602706/1995071-200_zolgnb.png'}
             alt="user profile"
             width={50}
             height={50}

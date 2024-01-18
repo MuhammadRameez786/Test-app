@@ -12,3 +12,6 @@ npx hardhat node
 npx hardhat run scripts/deploy.js
 npx hardhat run scripts/deploy.js --network polygon_mumbai
 ```
+git add .
+git commit -m "minor update"
+git push origin master

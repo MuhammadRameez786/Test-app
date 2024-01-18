@@ -68,26 +68,36 @@ const AuthorProfileCard = () => {
       setReport(false);
     }
   };
+  const defaultProfileUrl =
+    "https://res.cloudinary.com/dmesqweam/image/upload/v1705602706/1995071-200_zolgnb.png";
 
   return (
     <div className={Style.AuthorProfileCard}>
       <div className={Style.AuthorProfileCard_box}>
       <div className={Style.AuthorProfileCard_box_img}>
-          {userData && userData.profilePicture && (
+          {userData && userData.profilePicture ? (
             <img
-              src={userData.profilePicture}
+            src={userData.profilePicture}
               className={Style.AuthorProfileCard_box_img_img}
               alt="NFT IMAGES"
               width={220}
               height={220}
             />
+            ) : (
+              <img
+                src={defaultProfileUrl}
+                objectFit="cover"
+                alt="NFT IMAGES"
+                width={220}
+                height={220}
+              />
           )}
         </div>
 
 
         <div className={Style.AuthorProfileCard_box_info}>
           <h2>
-            {userData?.name}{" "}
+            {userData?.name || 'Anonymous'}{" "}
             <span>
               <MdVerified />
             </span>{" "}

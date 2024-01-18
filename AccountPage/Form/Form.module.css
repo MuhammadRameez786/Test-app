@@ -1,7 +1,7 @@
 
 
 .Form{
-    width: 100%;
+    width: 170%;
     padding-left: 1rem;
     margin-right: 10rem;
 }
@@ -99,7 +99,7 @@
     border-radius: 1rem;
     align-items: center;
     display: flex;
-    gap: 1rem;
+    gap: 1rem !important;
     overflow: hidden;
 }
 
