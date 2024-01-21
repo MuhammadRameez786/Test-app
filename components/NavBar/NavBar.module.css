@@ -30,7 +30,7 @@
 }
 
 .navbar_container_left_box_input_box{
-    width: 60%;
+    width: 80%;
     border: 1px solid var(--icons-color);
     display: flex;
     align-items: center;
@@ -56,7 +56,7 @@
 .navbar_container_right{
     display: grid;
     grid-template-columns: 1fr 1fr .5fr 1fr .3fr;
-    gap: 1rem;
+    gap: 3rem;
     align-items: center;
     padding-right: 2rem;
     /* align-self: flex-end; */
@@ -65,11 +65,13 @@
 .navbar_container_right_discover{
     position: relative;
     cursor: pointer;
+    display: inline-block;
 }
 .navbar_container_right_help{
     position: relative;
     cursor: pointer;
 }
+
 
 .navbar_container_right_discover_box,
 .navbar_container_right_help_box{
@@ -80,7 +82,12 @@
     width: 15rem;
     border-radius: 1rem;
     background-color: var(--main-bg-color);
+    top: calc(100% + 10px);
+    
 }
+.navbar_container_right_discover_wrapper:hover .navbar_container_right_discover_box {
+    display: block;
+  }
 
 .navbar_container_right_notify{
     position: relative;

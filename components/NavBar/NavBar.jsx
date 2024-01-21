@@ -167,9 +167,8 @@ const NavBar = () => {
         {/* //END OF LEFT SECTION */}
         <div className={Style.navbar_container_right}>
           <div className={Style.navbar_container_right_discover}
-
-            onMouseEnter={handleDiscoverClick}
-             onMouseLeave={() => setDiscoverOpen(false)}
+            onMouseEnter={() => setDiscoverOpen(true)}
+            onMouseLeave={() => setDiscoverOpen(false)}
              >
           <Link href="#">
             <a>Discover</a>
@@ -187,7 +186,7 @@ const NavBar = () => {
             onMouseLeave={() => setHelpOpen(false)}
           >
             <Link href="#">
-              <a>Help Center</a>
+              <a>Help</a>
             </Link>
             {helpOpen && (
               <div className={Style.navbar_container_right_help_box}>

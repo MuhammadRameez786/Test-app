@@ -13,8 +13,16 @@ export default () => {
     setState("LOADING");
     setErrorMessage(null);
     try {
-      const response = await axios.post("https://testapi.thedaygalpuclub.com/api/v1/users/newsletter", { email });
-      setState("SUCCESS");
+      const response = await axios.post("https://newsletter-server-lemon.vercel.app/api/subscribe", { email });
+      
+      if (response.data.success) {
+        // Check if the email is already subscribed
+        if (response.data.message.includes("already subscribed")) {
+          setState("ALREADY_SUBSCRIBED");
+        } else {
+          setState("SUCCESS");
+        }
+      }
     } catch (e) {
       setErrorMessage(e.response.data.error);
       setState("ERROR");
@@ -39,6 +47,9 @@ export default () => {
       )}
       {state === "SUCCESS" && (
         <p className={Style.success_msg}>Thanks for subscribing to our email list</p>
+      )}
+      {state === "ALREADY_SUBSCRIBED" && (
+        <p className={Style.success_msg}>You are already subscribed to our email list</p>
       )}
     </div>
   );
