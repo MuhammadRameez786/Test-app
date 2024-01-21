@@ -18,7 +18,7 @@ export const createCollection = (name, description, category, image, seller) => 
       };
   
       const { data } = await axios.post(
-        "https://testapi.thedaygalpuclub.com/api/v1/collection",
+        "https://api.thedaygalpuclub.com/api/v1/collection",
         { name, description, category, image, seller },
         config
       );

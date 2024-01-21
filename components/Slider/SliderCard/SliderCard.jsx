@@ -12,7 +12,7 @@
 //   const [arts, setArts] = useState([]);
 
 //   useEffect(() => {
-//     const eventSource = new EventSource("https://testapi.thedaygalpuclub.com/api/v1/collection");
+//     const eventSource = new EventSource("https://api.thedaygalpuclub.com/api/v1/collection");
 
 //     eventSource.addEventListener("nftCollection", (event) => {
 //       const data = JSON.parse(event.data);
@@ -118,7 +118,7 @@ const SliderCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://testapi.thedaygalpuclub.com/api/v1/collection");
+        const response = await axios.get("https://api.thedaygalpuclub.com/api/v1/collection");
         const data = response.data;
         setArts(data.arts);
       } catch (error) {

@@ -32,7 +32,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
 
   const router = useRouter();
   useEffect(() => {
-    const eventSource = new EventSource("https://testapi.thedaygalpuclub.com/api/v1/collection");
+    const eventSource = new EventSource("https://api.thedaygalpuclub.com/api/v1/collection");
 
     eventSource.addEventListener("nftCollection", (event) => {
       const data = JSON.parse(event.data);
