@@ -10,7 +10,7 @@ const Top3 = ({ creators, index }) => {
 
   useEffect(() => {
     const eventSource = new EventSource(
-      "https://testapi.thedaygalpuclub.com/api/v1/nfts/top-5-creators"
+      "https://api.thedaygalpuclub.com/api/v1/nfts/top-5-creators"
     );
 
     eventSource.addEventListener("update", (event) => {
