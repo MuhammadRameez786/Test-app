@@ -57,6 +57,13 @@
     font-weight: 700;
     font-size: 1.3rem;
 }
+.dropdownLabel{
+    display: block;
+    width: 100%;
+    margin-left: 1rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
 
 .Form_box_input_userName{
     width: 100%;
@@ -159,6 +166,48 @@
     border:  1px solid var(--icons-color);
     color:  var(--icons-color);
 }
+/* Style for the dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Style for the button that will toggle the dropdown */
+  .dropdown button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Style for the dropdown content (hidden by default) */
+  .dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  /* Style for the dropdown options */
+  .dropdown_content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Show the dropdown when the button is hovered over */
+  .dropdown:hover .dropdown_content {
+    display: block;
+  }
 
 @media screen and (max-width: 35em) {
     .Form_box_input_social{

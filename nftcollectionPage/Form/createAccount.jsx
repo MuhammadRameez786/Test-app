@@ -1,213 +1,90 @@
-// import React, { useEffect, useState, useContext } from 'react';
-// import { NFTMarketplaceContext } from '../../Context/NFTMarketplaceContext';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { HiOutlineMail } from "react-icons/hi";
-// import { EventSourcePolyfill } from 'event-source-polyfill';
-
-// import Style from "./createAccount.module.css";
-
-// const createAccount = () => {
-//   const [name, setName] = useState('');
-//   const [collectionDescription, setCollectionDescription] = useState('');
-//   const [collectionImage, setcollectionImage] = useState("https://res.cloudinary.com/dmesqweam/image/upload/v1680896111/images_7_ttxx6q.jpg");
-//   const [category, setCategory] = useState('');
-//   const { currentAccount } = useContext(NFTMarketplaceContext);
-//   const [seller, setSeller] = useState('');
-//   const [imageMessage, setImageMessage] = useState();
-//   const [nfts, setNFTs] = useState([]);
-
-//   useEffect(() => {
-//     const eventSource = new EventSource('https://api.thedaygalpuclub.com/api/v1/collection');
-
-//     eventSource.addEventListener('nftCollection', (event) => {
-//     const data = JSON.parse(event.data);
-//     const { arts, music, photography } = data;
-//     });
-
-//   }, []);
-
-//   const postDetails = (collectionImages) => {
-//     setImageMessage(null);
-//     if (collectionImages.type === "image/jpeg" || collectionImages.type === "image/png") {
-//       const data = new FormData();
-//       data.append("file", collectionImages);
-//       data.append("upload_preset", "pba5hgyo");
-//       data.append("cloud_name", "dmesqweam");
-//       fetch("https://api.cloudinary.com/v1_1/dmesqweam/image/upload", {
-//         method: "post",
-//         body: data,
-//       })
-//         .then((res) => res.json())
-//         .then((data) => {
-//           setcollectionImage(data.url.toString());
-//           console.log(collectionImage);
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
-//     } else {
-//       return setImageMessage("Please Select an Image");
-//     }
-//   };
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-  
-//     const data = {
-//       name,
-//       collectionDescription,
-//       category,
-//       collectionImage,
-//       seller: currentAccount,
-//     };
-  
-//     try {
-//         const response = await fetch("https://api.thedaygalpuclub.com/api/v1/collection", {
-//           method: "POST",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//           body: JSON.stringify(data),
-//         });
-//         const responseData = await response.json();
-      
-//         if (response.status === 201) {
-//             toast.success("Collection Created successfully.", {
-//               position: "top-center",
-//               autoClose: 5000,
-//               hideProgressBar: false,
-//               closeOnClick: true,
-//               pauseOnHover: true,
-//               draggable: true,
-//               progress: undefined,
-//               theme: "dark",
-//             });
-//           } else {
-//             toast.error(`Error creating collection: ${responseData.error.errors.name.message}`, {
-//               position: "top-center",
-//               autoClose: 5000,
-//               hideProgressBar: false,
-//               closeOnClick: true,
-//               pauseOnHover: true,
-//               draggable: true,
-//               progress: undefined,
-//               theme: "dark",
-//             });
-//           }
-      
-//       } catch (error) {
-//     }      
-//   };
-
-
-//   return (
-//     <div className={Style.Form}>
-//         <div className={Style.Form_box}>
-//         <div className={Style.account_box_img}>
-//             <img
-//               src={collectionImage}
-//               alt="profile Image"
-//               width={150}
-//               height={150}
-//               className={Style.account_box_img_img}
-//             />
-//         </div>
-//             <form onSubmit={handleSubmit}>
-//                 <div className={Style.Form_box_image}>
-//                     <label htmlFor="image-upload" style={{ cursor: 'pointer' }}>Upload Image</label>
-//                         <input
-//                         type="file"
-//                         accept="image/*"
-//                         id="image-upload"
-//                         style={{ display: "none" }}
-//                         onChange={(e) => postDetails(e.target.files[0])}
-//                         />
-            
-//                     {imageMessage && <p className="error">{imageMessage}</p>}
-//                 </div>
-//                 <div className={Style.Form_box_input}>
-//                 <label htmlFor="name">Collection Name:</label>
-//                     <div className={Style.Form_box_input_box}>
-//                         <div className={Style.Form_box_input_box_icon}>
-//                             <HiOutlineMail />
-//                         </div>
-//                         <input
-//                             type="name"
-//                             id="name"
-//                             name="name"
-//                             value={name}
-//                             onChange={(e) => setName(e.target.value)}
-//                         />
-//                     </div>
-//                 </div>
-//                 <div className={Style.Form_box_input}>
-//                 <label htmlFor="description">Collection Description:</label>
-//                 <textarea
-//                     id="description"
-//                     name="description"
-//                     value={collectionDescription}
-//                     onChange={(e) => setCollectionDescription(e.target.value)}
-//                 />
-//                 </div>
-//                 <div className={Style.Form_box_input}>
-//                 <label htmlFor="name">Select a category:</label>
-//                 <div className={Style.Form_box_input_box}>
-//                     <select value={category} onChange={(e) => setCategory(e.target.value)}>
-//                         <option value="Arts">Arts</option>
-//                         <option value="Music">Music</option>
-//                         <option value="Photography">Photography</option>
-//                     </select>
-//                     </div>
-//                 </div>
-//                 <div className={Style.Form_box_input}>
-//                 <label htmlFor="currentAccount">Wallet Address:</label>
-//                     <div className={Style.Form_box_input_box}>
-//                         <div className={Style.Form_box_input_box_icon}>
-//                             <HiOutlineMail />
-//                         </div>
-//                     <input
-//                         type="text"
-//                         id="currentAccount"
-//                         name="currentAccount"
-//                         value={currentAccount}
-//                         disabled={true}
-//                         onChange={(e) => setSeller(e.target.value)}
-//                     />
-//                     </div>
-//                 </div >
-//                 <div className={Style.Form_box_btn}>
-//                 <button type="submit" className={Style.button}>Create Collection</button>
-//                 </div>
-//             </form>
-//             <ToastContainer
-//             position="top-center"
-//             autoClose={5000}
-//             hideProgressBar={false}
-//             newestOnTop={false}
-//             closeOnClick
-//             rtl={false}
-//             pauseOnFocusLoss
-//             draggable
-//             pauseOnHover
-//             theme="dark"
-//           />
-//         </div>
-//     </div>
-//   );
-// }
-
-// export default createAccount;
-
 import React, { useState, useContext } from 'react';
+import { HiOutlineMail, HiUserCircle } from "react-icons/hi";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Select from "react-select";
 import { NFTMarketplaceContext } from '../../Context/NFTMarketplaceContext';
+import Style from "../../AccountPage/Form/Form.module.css"
 
 const createAccount = () => {
-  const { createNFTCollection, connectToNFTCollection, createAccount } = useContext(NFTMarketplaceContext);
+  const { createNFTCollection, connectToNFTCollection, createAccount, uploadToIPFS, } = useContext(NFTMarketplaceContext);
 
   const [name, setName] = useState('');
   const [picture, setPicture] = useState('');
   const [banner, setBanner] = useState('');
   const [category, setCategory] = useState('');
+  const [error, setError] = useState(null);
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      width: 'auto', // Adjust the width as needed
+      backgroundColor: 'transparent',
+      borderRadius: '10px', // Add border radius
+      borderColor: '#ffeb3b', // Add border color (yellow)
+      color: '#ffeb3b', // Add text color (yellow)
+      '&:hover': {
+        // Remove or adjust hover styles as needed
+      },
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: '#ffeb3b', // Add input text color (yellow)
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: 'transparent', // Set your desired background color
+      
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? '#ffeb3b' : 'transparent', // Yellow background on hover
+      color: state.isSelected ? '#ffeb3b' : state.isFocused ? 'black' : 'inherit',
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#ffeb3b', // Add placeholder color (yellow)
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: '#ffeb3b', // Add color for the selected value (yellow)
+    }),
+  };
+
+  const options = [
+    { value: "Art", label: "Art" },
+    { value: "Gaming", label: "Gaming" },
+    { value: "PFPs", label: "PFPs" },
+    { value: "Photography", label: "Photography" },
+    { value: "Music", label: "Music" },
+  ];
+  const handlePictureUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const ipfsLink = await uploadToIPFS(file);
+        setPicture(ipfsLink);
+        toast.success('Profile Picture uploaded successfully!');
+      } catch (error) {
+        console.error('Error uploading picture to IPFS:', error);
+        toast.error('Error uploading picture. Please try again.');
+      }
+    }
+  };
+
+  const handleBannerUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const ipfsLink = await uploadToIPFS(file);
+        setBanner(ipfsLink);
+        toast.success('Banner uploaded successfully!');
+      } catch (error) {
+        console.error('Error uploading banner to IPFS:', error);
+        toast.error('Error uploadinge banner. Please try again.');
+      }
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -230,39 +107,65 @@ const createAccount = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <br />
+    <div className={Style.Form}>
+      <div className={Style.Form_box}>
+        <form onSubmit={handleSubmit}>
+          <div className={Style.Form_box_input}>
+            <label htmlFor="name">Name</label>
+            <div className={Style.Form_box_input_box}>
+              <div className={Style.Form_box_input_box_icon}>
+                <HiUserCircle />
+              </div>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+          </div>
+          <div className={Style.Form_box_input}>
+            <label htmlFor="picture-upload">Upload Image</label>
+            <div className={Style.Form_box_input_box}>
+              <div className={Style.Form_box_input_box_icon}>
+                <HiUserCircle />
+              </div>
+              <input
+                type="file"
+                accept="image/*"
+                id="picture-upload"
+                onChange={handlePictureUpload}
+              />
+            </div>
+          </div>
+          <div className={Style.Form_box_input}>
+            <label htmlFor="banner-upload">Upload Banner</label>
+            <div className={Style.Form_box_input_box}>
+              <div className={Style.Form_box_input_box_icon}>
+                <HiUserCircle />
+              </div>
+              <input
+                type="file"
+                accept="image/*"
+                id="banner-upload"
+                onChange={handleBannerUpload}
+              />
+            </div>
+          </div>
+          <div className={Style.customDropdown}>
+            <label className={Style.dropdownLabel}>Category:</label>
+            <Select
+              className={Style.dropdownSelect}
+              value={options.find((opt) => opt.value === category)}
+              onChange={(selectedOption) => setCategory(selectedOption.value)}
+              options={options}
+              styles={customStyles} // Apply the custom styles
+            />
+          </div>
+          <div className={Style.Form_box_btn}>
+            <button className={Style.button} type="submit">Create</button>
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <label>
-        Picture URL:
-        <input type="text" value={picture} onChange={(e) => setPicture(e.target.value)} />
-      </label>
-      <br />
-
-      <label>
-        Banner URL:
-        <input type="text" value={banner} onChange={(e) => setBanner(e.target.value)} />
-      </label>
-      <br />
-
-      <label>
-        Category:
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="Art">Art</option>
-          <option value="Gaming">Gaming</option>
-          <option value="PFPs">PFPs</option>
-          <option value="Photography">Photography</option>
-          <option value="Music">Music</option>
-        </select>
-      </label>
-      <br />
-
-      <button type="submit">Create NFT Collection</button>
-    </form>
+          <ToastContainer />
+        </form>
+      </div>
+    </div>
   );
 };
 
