@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { HiOutlineMail, HiUserCircle } from "react-icons/hi";
+import {  HiUserCircle, HiMenuAlt1 } from "react-icons/hi";
+import { FaFileImage } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Select from "react-select";
@@ -19,12 +20,12 @@ const createAccount = () => {
     control: (provided) => ({
       ...provided,
       width: 'auto', // Adjust the width as needed
-      backgroundColor: 'transparent',
+      backgroundColor: '#232325',
       borderRadius: '10px', // Add border radius
       borderColor: '#ffeb3b', // Add border color (yellow)
       color: '#ffeb3b', // Add text color (yellow)
       '&:hover': {
-        // Remove or adjust hover styles as needed
+        borderRadius: '10px',
       },
     }),
     input: (provided) => ({
@@ -33,13 +34,14 @@ const createAccount = () => {
     }),
     menu: (provided) => ({
       ...provided,
-      backgroundColor: 'transparent', // Set your desired background color
+      backgroundColor: '#232325', // Set your desired background color
       
     }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isFocused ? '#ffeb3b' : 'transparent', // Yellow background on hover
       color: state.isSelected ? '#ffeb3b' : state.isFocused ? 'black' : 'inherit',
+      borderRadius: '10px',
     }),
     placeholder: (provided) => ({
       ...provided,
@@ -123,7 +125,7 @@ const createAccount = () => {
             <label htmlFor="picture-upload">Upload Image</label>
             <div className={Style.Form_box_input_box}>
               <div className={Style.Form_box_input_box_icon}>
-                <HiUserCircle />
+              <FaFileImage />
               </div>
               <input
                 type="file"
@@ -137,7 +139,7 @@ const createAccount = () => {
             <label htmlFor="banner-upload">Upload Banner</label>
             <div className={Style.Form_box_input_box}>
               <div className={Style.Form_box_input_box_icon}>
-                <HiUserCircle />
+              <FaFileImage />
               </div>
               <input
                 type="file"
@@ -147,15 +149,18 @@ const createAccount = () => {
               />
             </div>
           </div>
-          <div className={Style.customDropdown}>
-            <label className={Style.dropdownLabel}>Category:</label>
-            <Select
-              className={Style.dropdownSelect}
-              value={options.find((opt) => opt.value === category)}
-              onChange={(selectedOption) => setCategory(selectedOption.value)}
-              options={options}
-              styles={customStyles} // Apply the custom styles
-            />
+          <div className={Style.Form_box_input}>
+            <div className={Style.customDropdown}>
+              <label className={Style.dropdownLabel}>Category:</label>
+              <Select
+                className={Style.dropdownSelect}
+                value={options.find((opt) => opt.value === category)}
+                onChange={(selectedOption) => setCategory(selectedOption.value)}
+                options={options}
+                styles={customStyles} // Apply the custom styles
+                
+              />
+            </div>
           </div>
           <div className={Style.Form_box_btn}>
             <button className={Style.button} type="submit">Create</button>

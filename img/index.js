@@ -58,6 +58,7 @@ import errorgif from "./error.gif";
 import transfer from "./transfer.gif";
 import transferEther from "./ethereTransfer.gif";
 import pfp_avatar from "./pfp_avatar.png"
+import loading from "./loadergif.gif"
 
 export default {
   hero2,
@@ -120,4 +121,5 @@ export default {
   transferEther,
   transfer,
   pfp_avatar,
+  loading,
 };

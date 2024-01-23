@@ -100,8 +100,6 @@ const connectingWithSmartContract = async () => {
         const provider = new ethers.providers.Web3Provider(connection);
         const signer = provider.getSigner();
         const contract = fetchNFTCollectionContract(signer);
-        console.log("nft:", contract);
-    
         return contract;
       } catch (error) {
         console.log('Error connecting to user profile contract:', error);
@@ -393,7 +391,6 @@ export const NFTMarketplaceProvider = ({ children }) => {
       if (currentAccount) {
         const contract = await connectToNFTCollection(); // Assume you have a function like this to connect to your NFT contract
         const userCollections = await contract.getUserCollections();
-        console.log('Received user collections:', userCollections);
         return userCollections;
       }
     } catch (error) {

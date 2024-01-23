@@ -18,6 +18,7 @@ const myCollections = () => {
       try {
         const userCollections = await getUserCollections(currentAccount);
         setNftData(userCollections);
+        console.log("colletions:", userCollections);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }

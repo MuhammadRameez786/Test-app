@@ -15,6 +15,7 @@ import Style from "./NavBar.module.css";
 import { Discover, HelpCenter, Notification, Profile, SideBar } from "./index";
 import { Button, Error } from "../componentsindex";
 import images from "../../img";
+import loading from "../../img"
 
 //IMPORT FROM SMART CONTRACT
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
@@ -58,7 +59,6 @@ const NavBar = () => {
         const userbalance = await getWalletBalance(currentAccount);
         // Set the fetched user data to the state
         setUserBalance(userbalance);
-        console.log("userbance1", userbalance);
       } catch (error) {
         console.error("Error fetching user data:", error);
         // Handle error or display a message to the user
@@ -219,7 +219,11 @@ const NavBar = () => {
             /* USER PROFILE */
             (typeof window !== "undefined" && userData) ? (
               <div className={Style.navbar_container_right_profile_box}><MdOutlineWallet className={Style.notify} />
-                <p className={Style.balanceText}>{userbalance.slice(0, 6)}</p>
+                {userbalance ? (
+                  <p className={Style.balanceText}>{userbalance.slice(0, 6)}</p>
+                ) : (
+                  <loading />
+                )}
                 <div className={Style.navbar_container_right_profile}>
                   <div className={Style.profileContainer}>
                     <img
