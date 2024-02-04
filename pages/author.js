@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 //INTERNAL IMPORT
 import Style from "../styles/author.module.css";
 import { Banner, NFTCardTwo } from "../collectionPage/collectionIndex";
-import { Brand, Title, MyCollections } from "../components/componentsindex";
+import { Brand, Title, MyCollections, NFTCard } from "../components/componentsindex";
 import FollowerTabCard from "../components/FollowerTab/FollowerTabCard/FollowerTabCard";
 import images from "../img";
 import {

@@ -21,12 +21,9 @@ import loading from "../../img"
 import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const NavBar = () => {
-  const dispatch = useDispatch();
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
 
   //----USESTATE COMPONNTS
+  const { getUser, getWalletBalance, currentAccount, openError, connectToUserProfile } = useContext(NFTMarketplaceContext);
   const [user, setUser] = useState('')
   const [discoverOpen, setDiscoverOpen] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
@@ -34,9 +31,6 @@ const NavBar = () => {
   const [profile, setProfile] = useState(false);
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [name, setName] = useState("");
-  const [pic, setPic] = useState("");
-  const { getUser, getWalletBalance, currentAccount } = useContext(NFTMarketplaceContext);
   const [userData, setUserData] = useState(null);
   const [userbalance, setUserBalance] = useState(null);
 
@@ -130,17 +124,45 @@ const NavBar = () => {
     }
   };
 
-  //SMART CONTRACT SECTION
-  const { connectWallet, openError } = useContext(
-    NFTMarketplaceContext
-  );
-  useEffect(() => {
-    if (!currentAccount) {
-      connectWallet();
-    }
-  }, [currentAccount, connectWallet]);  
+  const connectWallet = async () => {
+    try {
+      if (!window.ethereum) {
+        throw new Error("Install MetaMask");
+      }
 
-  useEffect(() => {}, [userInfo]);
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      if (accounts.length) {
+        // Fetch and log wallet balance
+        const walletBalance = await getWalletBalance(accounts[0]);
+        if (walletBalance !== null) {
+          setUserBalance(walletBalance);
+        } else {
+          throw new Error("Error fetching wallet balance");
+        }
+      } else {
+        console.log("No account");
+      }
+    } catch (error) {
+      console.error("Error connecting to wallet:", error);
+    }
+  };
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        const userProfileContract = await connectToUserProfile(); // Replace with your actual function to initialize the user profile contract
+        setUserData(userProfileContract);
+      } catch (error) {
+        console.error("Error initializing contracts:", error);
+      }
+    };
+
+    initialize();
+  }, []); 
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -215,45 +237,52 @@ const NavBar = () => {
               />
             )}
           </div>
-          {isMounted && (
-            /* USER PROFILE */
-            (typeof window !== "undefined" && userData) ? (
-              <div className={Style.navbar_container_right_profile_box}><MdOutlineWallet className={Style.notify} />
-                {userbalance ? (
-                  <p className={Style.balanceText}>{userbalance.slice(0, 6)}</p>
-                ) : (
-                  <loading />
-                )}
-                <div className={Style.navbar_container_right_profile}>
-                  <div className={Style.profileContainer}>
-                    <img
-                      src={userData.profilePicture || 'https://res.cloudinary.com/dmesqweam/image/upload/v1705602706/1995071-200_zolgnb.png'}
-                      alt="Profile"
-                      width={40}
-                      height={40}
-                      onClick={() => {
-                        openProfile();
-                      }}
-                      className={Style.navbar_container_right_profile}
-                    />
-                    {profile && (
-                      <>
-                        <Profile currentAccount={currentAccount} />
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className={Style.navbar_container_right_profile_box}>
-                <div className={Style.navbar_container_right_profile}>
-                  <Link href="/login">
-                    <a className={Style.link}>Login</a>
-                  </Link>
-                </div>
-              </div>
-            )
+          {/* USER PROFILE */}
+      {isMounted && (
+        <div className={Style.navbar_container_right_profile_box}>
+          <MdOutlineWallet className={Style.notify} />
+          {userbalance !== null ? (
+            <p className={Style.balanceText}>{userbalance.slice(0, 6)}</p>
+          ) : (
+            <p>Loading...</p>
+            // <img
+            //   src="https://res.cloudinary.com/dmesqweam/image/upload/v1707033859/loading_p9a9mf.gif"
+            //   alt="Loading"
+            //   width={30}
+            //   height={20}
+            // />
           )}
+          <div className={Style.navbar_container_right_profile}>
+            <div className={Style.profileContainer}>
+              <img
+                src={
+                  userData
+                    ? userData.profilePicture ||
+                      'https://res.cloudinary.com/dmesqweam/image/upload/v1707047901/1995071-200_zolgnb-removebg-preview_non0fm.png'
+                    : 'https://res.cloudinary.com/dmesqweam/image/upload/v1707047901/1995071-200_zolgnb-removebg-preview_non0fm.png'
+                }
+                alt="Profile"
+                width={30}
+                height={30}
+                onClick={() => {
+                  openProfile();
+                }}
+                className={Style.navbar_container_right_profile}
+              />
+              {profile && <Profile currentAccount={currentAccount} />}
+            </div>
+          </div>
+        </div>
+      )}
+      {!isMounted && (
+        <div className={Style.navbar_container_right_profile_box}>
+          <div className={Style.navbar_container_right_profile}>
+            <Link href="/login">
+              <a className={Style.link}>Login</a>
+            </Link>
+          </div>
+        </div>
+      )}
 
           {/* MENU BUTTON */}
 

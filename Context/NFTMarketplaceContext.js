@@ -153,8 +153,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error connecting to wallet:", error);
-      // setError("Something wrong while connecting to wallet");
-      // setOpenError(true);
+       setError("Something wrong while connecting to wallet");
+       setOpenError(true);
       console.log("Not connected");
     }
   };
@@ -178,13 +178,13 @@ export const NFTMarketplaceProvider = ({ children }) => {
   };
   
   // Call checkIfWalletConnected to trigger the process
-  checkIfWalletConnected();
+  //checkIfWalletConnected();
 
 
-  // useEffect(() => {
-  //   // checkIfWalletConnected();
-  //   // connectingWithSmartContract();
-  // }, []);
+  useEffect(() => {
+    checkIfWalletConnected();
+    connectingWithSmartContract();
+  }, []);
 
   //---CONNET WALLET FUNCTION
   const connectWallet = async () => {
@@ -200,8 +200,8 @@ export const NFTMarketplaceProvider = ({ children }) => {
       // window.location.reload();
       connectingWithSmartContract();
     } catch (error) {
-      // setError("Error while connecting to wallet");
-      // setOpenError(true);
+       setError("Error while connecting to wallet");
+       setOpenError(true);
     }
   };
   
@@ -401,19 +401,20 @@ export const NFTMarketplaceProvider = ({ children }) => {
   };
     
   //---CREATENFT FUNCTION
-  const createNFT = async (name, price, image, description, router, website, royalties, fileSize, collectionName, currentAccount, ) => {
+  const createNFT = async (name, price, image, description, router, website, royalties, fileSize, currentAccount, collectionName) => {
     console.log("CreateNFT", name, price,  description, collectionName);
+    console.log("Inside createNFT - collectionName (before check):", collectionName);
     if (!name || !description || !price || !image)
       return setError("Data Is Missing"), setOpenError(true);
 
-    const data = JSON.stringify({ name, description, image });
+    const data = JSON.stringify({ name, description, image, collectionName });
 
     try {
       const added = await client.add(data);
 
       const url = `${subdomain}/ipfs/${added.path}`;
 
-      await createSale(url, false, null, price, name, image, description, website, royalties, fileSize, currentAccount, collectionName);
+      await createSale(url, false, null, price, name, image, description, website, royalties, fileSize, currentAccount);
       // router.push("/searchPage");
     } catch (error) {
       console.log("CreatError", error);
@@ -422,9 +423,9 @@ export const NFTMarketplaceProvider = ({ children }) => {
     }
   };
 
-  const createSale = async (url, isReselling, id, formInputPrice, name, image, description, website, royalties, fileSize, currentAccount, collectionName) => {
+  const createSale = async (url, isReselling, id, formInputPrice, name, image, description, website, royalties, fileSize, currentAccount) => {
     try {
-      console.log(url, formInputPrice, isReselling, id, name, image, description, website, royalties, fileSize, currentAccount, collectionName);
+      console.log(url, formInputPrice, isReselling, id, name, image, description, website, royalties, fileSize, currentAccount);
       const price = ethers.utils.parseUnits(formInputPrice, "ether");
       console.log("Price:", ethers.utils.formatEther(price));
       console.log("Price2:", price);
@@ -468,7 +469,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
             const tokenURI = await contract.tokenURI(tokenId);
             const url = await contract.getTokenUrl(tokenId);
             const {
-              data: { image, name, description },
+              data: { image, name, description, collectionName },
             } = await axios.get(url);
 
             const price = ethers.utils.formatUnits(unformattedPrice.toString(), "ether");
@@ -487,7 +488,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
         })
       );
   
-      //console.log('Final items:', items);
+      console.log('Final items:', items);
       return items;
     } catch (error) {
       console.error("Error fetching NFTs:", error);

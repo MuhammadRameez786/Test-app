@@ -82,16 +82,21 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
 
     fetchUserData();
   }, [getUserCollections, currentAccount]);
-  const CustomOption = ({ innerProps, label, data }) => (
-    <div {...innerProps}>
-      <img
-        src={data.picture}
-        alt={label}
-        style={{ width: '24px', marginRight: '8px' }}
-      />
-      {label}
-    </div>
-  );
+
+  const handleCreateNFT = async () => {
+    console.log("Inside handleCreateNFT - collectionName:", collectionName);
+    createNFT(
+      name,
+      price,
+      image,
+      description,
+      router,
+      website,
+      royalties,
+      fileSize,
+      collectionName, // Now you can directly pass collectionName here
+    );
+  };
   return (
     <div className={Style.upload}>
       <DropZone
@@ -157,28 +162,27 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
           </p>
         </div>
         <div className={formStyle.Form_box_input}>
-  <label htmlFor="name">Choose collection</label>
-  <p className={Style.upload_box_input_para}>
-    Choose an existing collection or create a new one
-  </p>
-  <div className={Style.upload_box_slider_div}>
-    <Select
-      options={userCollections.map((collection) => ({
-        value: collection.name,
-        label: collection.name,
-        picture: collection.picture,
-      }))}
-      defaultValue={userCollections.find((collection) => collection.name === collectionName)}
-      onChange={(selectedOption) => {
-        console.log("Selected Option:", selectedOption);
-        setCollectionName(selectedOption ? selectedOption.value : "");
-      }}
-      placeholder="Select a Collection"
-      styles={customStyles} 
-      components={{ Option: CustomOption }}
-    />
-  </div>
-</div>
+          <label htmlFor="name">Choose collection</label>
+          <p className={Style.upload_box_input_para}>
+            Choose an existing collection or create a new one
+          </p>
+          <div className={Style.upload_box_slider_div}>
+            <Select
+              options={userCollections.map((collection) => ({
+                value: collection.name,
+                label: collection.name,
+                picture: collection.picture,
+              }))}
+              defaultValue={userCollections.find((collection) => collection.name === collectionName)}
+              onChange={(selectedOption) => {
+                console.log("Selected Option:", selectedOption);
+                setCollectionName(selectedOption ? selectedOption.value : "");
+              }}
+              placeholder="Select a Collection"
+              styles={customStyles}
+            />
+          </div>
+        </div>
         <div className={formStyle.Form_box_input_social}>
           <div className={formStyle.Form_box_input}>
             <label htmlFor="Royalties">Royalties</label>
@@ -238,20 +242,7 @@ const UloadNFT = ({ uploadToIPFS, createNFT }) => {
         <div className={Style.upload_box_btn}>
           <Button
             btnName="Upload"
-            handleClick={async () =>
-              createNFT(
-                name,
-                price,
-                image,
-                description,
-                router,
-                website,
-                royalties,
-                fileSize,
-                collectionName // pass collectionName as an argument
-                // properties
-              )
-            }
+            handleClick={handleCreateNFT} // Use the updated function
             classStyle={Style.upload_box_btn_style}
           />
           <Button

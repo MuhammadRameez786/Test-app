@@ -39,7 +39,7 @@ const Slider = () => {
 
   useEffect(() => {
     setWidth(dragSlider.current.scrollWidth - dragSlider.current.offsetWidth);
-  });
+  }, []);
 
   const handleScroll = (direction) => {
     const { current } = dragSlider;

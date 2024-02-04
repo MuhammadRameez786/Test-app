@@ -30,7 +30,7 @@ const transferFunds = () => {
 
   useEffect(() => {
     getAllTransactions();
-  });
+  }, []);
   return (
     <div className={Style.transfer}>
       <div className={Style.transfer_box}>

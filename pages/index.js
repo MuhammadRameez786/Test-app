@@ -79,22 +79,22 @@ const Home = () => {
         heading="Our Top Sellers"
         paragraph="Discover the most outstanding Sellers."
       />
-      <Top3 />
-      <Title
+      {/* <Top3 /> */}
+      {/* <Title
         heading="Featured NFTs"
         paragraph="Discover the most outstanding NFTs in all topics of life."
-      />
-      <Filter />
-      <NFTCard />
+      /> */}
+      {/* <Filter /> */}
+      {/* <NFTCard /> */}
       {/* {nfts.length == 0 ? <Loader /> : <NFTCard NFTData={nfts} />} */}
-      <Title
+      {/* <Title
         heading="Audio Collection"
         paragraph="Discover the most outstanding NFTs in all topics of life."
       />
       <Slider />
       <Subscribe />
       <Brand />
-      <Video />
+      <Video /> */}
     </div>
   );
 };
