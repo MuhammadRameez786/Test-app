@@ -120,11 +120,11 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const [usercontract, setUserContract] = useState(null);
   const [allCollections, setAllCollections] = useState([]);
   const router = useRouter();
-
+  
   const checkIfWalletConnected = async () => {
     try {
       if (!window.ethereum) {
-        setOpenError(true);
+        setOpenError(false);
         setError("Install MetaMask");
         return;
       }
@@ -186,17 +186,17 @@ export const NFTMarketplaceProvider = ({ children }) => {
     connectingWithSmartContract();
   }, []);
 
-  //---CONNET WALLET FUNCTION
   const connectWallet = async () => {
     try {
-      if (!window.ethereum)
-        return setOpenError(false), setError("Install MetaMask");
-
+      if (!window.ethereum) {
+        return connectingWithSmartContract();
+      }
+  
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       setCurrentAccount(accounts[0]);
-
+  
       // window.location.reload();
       connectingWithSmartContract();
     } catch (error) {
@@ -204,6 +204,24 @@ export const NFTMarketplaceProvider = ({ children }) => {
        setOpenError(true);
     }
   };
+  //---CONNET WALLET FUNCTION
+  // const connectWallet = async () => {
+  //   try {
+  //     if (!window.ethereum)
+  //       return setOpenError(false), setError("Install MetaMask");
+
+  //     const accounts = await window.ethereum.request({
+  //       method: "eth_requestAccounts",
+  //     });
+  //     setCurrentAccount(accounts[0]);
+
+  //     // window.location.reload();
+  //     connectingWithSmartContract();
+  //   } catch (error) {
+  //      setError("Error while connecting to wallet");
+  //      setOpenError(true);
+  //   }
+  // };
   
 
   //---UPLOAD TO IPFS FUNCTION
