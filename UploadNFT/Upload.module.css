@@ -1,0 +1,135 @@
+
+
+.upload_box_input_para{
+   padding: 0 1rem;
+}
+
+.upload_box_slider_div{
+ display: flex;
+ gap: 1rem;
+}
+.upload_box_slider_div select {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(145, 250, 8);
+    padding: 12px 48px;
+    margin: 8px 0;
+    border: 1px solid rgba(255, 255, 0, 0.863);
+    border-radius: 5px;
+    background-color: #f7dc6f00;
+    cursor: pointer;  
+    font-family: 'Exo', sans-serif;
+}
+
+.upload_box_slider_div option {
+    font-size: 13px;
+  font-weight: bold;
+  background-color: var(--main-bg-color);
+}
+.upload_box_slider_div select option:hover {
+    background-color: var(--main-bg-color);
+}
+.select-dropdown option {
+    border: none;
+}
+  
+  /* Highlight dropdown options on hover */
+  .select-dropdown option:hover {
+    background-color: yellow;
+}
+
+.upload_box_slider{
+    border: 1px solid var(--icons-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.upload_box_slider_box{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.upload_box_slider_box_img_img{
+    border-radius: 50%;
+}
+
+.upload_box_slider_box_img_icon{
+    background-color: var(--icons-color);
+    color: var(--main-bg-color);
+    border-radius: 50%;
+    display: grid;
+    padding: .2rem;
+}
+
+.upload_box_slider p{
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.upload_box_btn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-block: 4rem;
+    gap: 2rem;
+}
+.error_msg,
+.success_msg {
+	width: 370px;
+	padding: 15px;
+	margin: 5px 0;
+	font-size: 14px;
+	background-color: #f34646;
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.success_msg {
+	background-color: #5cdd5c;
+}
+
+.button{
+    font-family: exo, sans-serif;
+    background-color: var(--icons-color);
+    padding: 1rem 2rem;
+    border: 1px solid var(--icons-color);
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    color: var(--shadow-light-color);
+    cursor: pointer;
+    transition:  all .2s ease-in;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.button:hover{
+    background-color: var(--main-bg-color) !important;
+    border:  1px solid var(--icons-color) !important;
+    color:  var(--icons-color);
+}
+
+.upload_box_btn_style{
+    width: 100%;
+    display: grid;
+    align-self: center;
+    font-size: 1.3rem;
+}
+
+.active{
+    background-color: var(--icons-color);
+    color: var(--main-bg-color);
+}
+
+@media screen and (max-width: 35em) {
+    .upload_box_slider_div{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

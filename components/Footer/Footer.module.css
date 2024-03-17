@@ -1,0 +1,128 @@
+
+.footer_box_social_logo{
+    font-size: 5rem;
+}
+
+.footer{
+    width: 100%;
+    padding-block: 1.5rem;
+    position: relative;
+   
+}
+
+.footer_box{
+    width: 80%;
+    margin: 0 auto;
+    display:  grid;
+    grid-template-columns: 1.3fr repeat(2, 1fr) 2fr;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+/* //SOCIAL */
+.footer_social{
+    display: flex;
+    gap: 1.3rem;
+    font-size: 1.5rem;
+    align-items: center;
+}
+
+
+.footer_social a{
+    padding: .5rem;
+    border-radius: 50%;
+    transition:  all .3s ease-in;
+    display: grid;
+}
+
+.footer_social a:hover{
+    background-color:  var(--icons-color);
+    color:  var(--shadow-dark-color);
+    box-shadow: var(--box-shadow);
+}
+
+.subscribe_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 2rem;
+    background-color:  var(--icons-color);
+    color: var(--shadow-dark-color);
+    border-radius: 5rem;
+    margin-top: 3rem;
+}
+.subscribe_box label{
+    display: flex;
+    align-items: center;
+}
+/* Style.subscribe_box_send{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  } */
+  
+
+.subscribe_box input{
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 90%;
+    color: var(--shadow-dark-color);
+    font-family: 'Exo', sans-serif;
+}
+
+.subscribe_box input::placeholder{
+    color:  var(--shadow-dark-color);
+    font-family: 'Exo', sans-serif;
+}
+.subscribe_box button {
+    background-color: transparent;
+    color: black;
+    padding: 2px 20px;
+    font-family: 'Exo', sans-serif;
+    font-weight: 900;
+    border: none;
+    cursor: pointer;
+}
+.error_msg,
+.success_msg {
+	width: 370px;
+	padding: 9px;
+	margin: 17px 0;
+	font-size: 14px;
+	background-color: #f34646;
+	color: white;
+	border-radius: 5px;
+	text-align: left;
+}
+
+.success_msg {
+	background-color: #5cdd5c;
+}
+  
+
+/* .subscribe_box_send{
+    cursor: pointer;
+    font-size: 2rem;
+} */
+
+.subscribe_box_info{
+    padding: 1rem 2rem;
+}
+
+/* //MEDIA QUERY */
+@media screen and (max-width: 45em) {
+    .footer_box{
+        width: 90%;
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media screen and (max-width: 35em) {
+    .footer_box{
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+}

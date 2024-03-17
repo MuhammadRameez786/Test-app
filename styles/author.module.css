@@ -1,0 +1,57 @@
+
+
+.author_box{
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 6rem;
+}
+.title{
+    width: 100%;
+    margin-top: 17rem;
+}
+
+.title_box{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.title_box h2{
+    font-size: 3rem;
+    line-height: 0;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 425px) {
+    .title_box{
+        width: 90%;
+    }
+
+    .title_box h2{
+        font-size: 1.8rem;
+        line-height: 0;
+    }
+}
+
+@media screen and (max-width: 35em) {
+    .author_box{
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+    .title{
+        width: 100%;
+        margin-top: 26rem;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .author_box{
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .title{
+        width: 100%;
+        margin-top: 22rem;
+    }
+}
