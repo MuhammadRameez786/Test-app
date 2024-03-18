@@ -121,43 +121,43 @@ export const NFTMarketplaceProvider = ({ children }) => {
   const [allCollections, setAllCollections] = useState([]);
   const router = useRouter();
 
-  const checkIfWalletConnected = async () => {
-    try {
-      if (!window.ethereum) {
-        setOpenError(true);
-        setError("Install MetaMask");
-        return;
-      }
+  // const checkIfWalletConnected = async () => {
+  //   try {
+  //     if (!window.ethereum) {
+  //       setOpenError(true);
+  //       setError("Install MetaMask");
+  //       return;
+  //     }
   
-      const accounts = await window.ethereum.request({
-        method: "eth_accounts",
-      });
+  //     const accounts = await window.ethereum.request({
+  //       method: "eth_accounts",
+  //     });
   
-      if (accounts.length) {
-        setCurrentAccount(accounts[0]);
-        //console.log("Current Account:", accounts[0]);
+  //     if (accounts.length) {
+  //       setCurrentAccount(accounts[0]);
+  //       //console.log("Current Account:", accounts[0]);
   
-        // Fetch and log wallet balance
-        const walletBalance = await getWalletBalance(accounts[0]);
-        if (walletBalance !== null) {
-          setAccountBalance(walletBalance);
-        } else {
-          // Handle the case where fetching the balance failed
-          setOpenError(true);
-          setError("Error fetching wallet balance");
-        }
-      } else {
-        console.log("No account");
-        // setError("No Account Found");
-        // setOpenError(true);
-      }
-    } catch (error) {
-      console.error("Error connecting to wallet:", error);
-      // setError("Something wrong while connecting to wallet");
-      // setOpenError(true);
-      console.log("Not connected");
-    }
-  };
+  //       // Fetch and log wallet balance
+  //       const walletBalance = await getWalletBalance(accounts[0]);
+  //       if (walletBalance !== null) {
+  //         setAccountBalance(walletBalance);
+  //       } else {
+  //         // Handle the case where fetching the balance failed
+  //         setOpenError(true);
+  //         setError("Error fetching wallet balance");
+  //       }
+  //     } else {
+  //       console.log("No account");
+  //       // setError("No Account Found");
+  //       // setOpenError(true);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error connecting to wallet:", error);
+  //     // setError("Something wrong while connecting to wallet");
+  //     // setOpenError(true);
+  //     console.log("Not connected");
+  //   }
+  // };
   
   const getWalletBalance = async (account) => {
     try {
@@ -182,7 +182,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
 
 
   useEffect(() => {
-    checkIfWalletConnected();
+    //checkIfWalletConnected();
     connectingWithSmartContract();
   }, []);
 
@@ -840,7 +840,7 @@ export const NFTMarketplaceProvider = ({ children }) => {
   return (
     <NFTMarketplaceContext.Provider
       value={{
-        checkIfWalletConnected,
+        //checkIfWalletConnected,
         getWalletBalance,
         connectWallet,
         uploadToIPFS,
